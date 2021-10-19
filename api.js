@@ -1,14 +1,27 @@
 import axios from "axios";
 
+const BASE_URL = "https://api.themoviedb.org/3";
 const TMDB_KEY = "e9658b7e9fde9f5a87597714d40bf19c";
 
 const makeRequest = (path, params) =>
-  axios.get(`https://api.themoviedb.org/3${path}`, {
+  axios.get(`${BASE_URL}${path}`, {
     params: {
       ...params,
       api_key: TMDB_KEY,
     },
   });
+
+const getRequest = async (path, params = {}) => {
+  try {
+    const {
+      data: { results },
+      data,
+    } = await makeRequest(path, params);
+    return [results || data, null];
+  } catch (error) {
+    return [null, error];
+  }
+};
 
 export const movieApi = {
   nowPlaying: () => getRequest("/movie/now_playing"),
