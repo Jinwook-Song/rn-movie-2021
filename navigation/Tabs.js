@@ -18,11 +18,17 @@ function bottomTabIcon(focused, tabName) {
 
 const Tabs = createBottomTabNavigator();
 
-export default ({ navigation }) => {
+export default () => {
   return (
     <Tabs.Navigator
       screenOptions={{
         tabBarActiveTintColor: "#e91e63",
+        headerStyle: {
+          backgroundColor: "black",
+          borderColor: "black",
+          shadowColor: "black",
+        },
+        headerTintColor: "white",
       }}
     >
       <Tabs.Screen
