@@ -29,9 +29,9 @@ export default function App() {
     return Promise.all([...images, ...fonts]);
   };
   const onFinish = () => setIsReady(true);
-  return isReady ? (
+  return true ? (
     <NavigationContainer>
-      <Stack></Stack>
+      <Stack />
     </NavigationContainer>
   ) : (
     <AppLoading
