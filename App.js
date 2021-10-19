@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import AppLoading from "expo-app-loading";
 import { Text, Image } from "react-native";
 import { Asset } from "expo-asset";
+import { Ionicons } from "@expo/vector-icons";
+import * as Font from "expo-font";
 
 const cacheImages = (images) =>
   images.map((image) => {
@@ -11,15 +13,18 @@ const cacheImages = (images) =>
       return Asset.fromModule(image).downloadAsync();
     }
   });
+const cacheFonts = (fonts) => fonts.map((font) => Font.loadAsync(font));
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
-  const loadAssets = async () => {
+  const loadAssets = () => {
     const images = cacheImages([
       "https://images.unsplash.com/photo-1586993451228-09818021e309?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YmVlcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
       require("./assets/splash.png"),
     ]);
-    console.log(images);
+    const fonts = cacheFonts([Ionicons.font]);
+
+    return Promise.all([...images, ...fonts]);
   };
   const onFinish = () => setIsReady(true);
   return isReady ? (
