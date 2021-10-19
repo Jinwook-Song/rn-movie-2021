@@ -5,13 +5,14 @@ import Tv from "../screens/Tv";
 import Search from "../screens/Search";
 import Favs from "../screens/Favs";
 import Fontisto from "react-native-vector-icons/Fontisto";
+import { theme } from "../colors";
 
 function bottomTabIcon(focused, tabName) {
   return (
     <Fontisto
       name={tabName}
       size={25}
-      color={`${focused ? "#e91e63" : "black"}`}
+      color={`${focused ? theme.base : theme.gray}`}
     />
   );
 }
@@ -22,20 +23,24 @@ export default () => {
   return (
     <Tabs.Navigator
       screenOptions={{
-        tabBarActiveTintColor: "#e91e63",
-        headerStyle: {
-          backgroundColor: "black",
-          borderColor: "black",
-          shadowColor: "black",
+        tabBarActiveTintColor: theme.base,
+        tabBarStyle: {
+          backgroundColor: theme.black,
+          borderTopColor: theme.black,
         },
-        headerTintColor: "white",
+        headerStyle: {
+          backgroundColor: theme.black,
+          borderBottomColor: theme.black,
+          shadowColor: theme.black,
+        },
+        headerTintColor: theme.white,
       }}
     >
       <Tabs.Screen
         name="Movies"
         component={Movies}
         options={{
-          tabBarIcon: ({ focused }) => bottomTabIcon(focused, "home"),
+          tabBarIcon: ({ focused }) => bottomTabIcon(focused, "film"),
         }}
       />
       <Tabs.Screen
