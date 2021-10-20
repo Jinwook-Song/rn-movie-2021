@@ -3,8 +3,7 @@ import styled from "styled-components/native";
 import Swiper from "react-native-web-swiper";
 import { theme } from "../../colors";
 import { ActivityIndicator, Dimensions } from "react-native";
-
-const { width, height } = Dimensions.get("screen");
+import Slide from "../../components/Movies/Slide";
 
 const Container = styled.View`
   flex: 1;
@@ -12,32 +11,25 @@ const Container = styled.View`
   justify-content: center;
 `;
 
-const Header = styled.View`
-  width: 100%;
-  height: ${height / 3}px;
-`;
-
-const Section = styled.View`
-  background-color: ${theme.base};
-  height: 100%;
-`;
-
-const Text = styled.Text``;
-
 export default ({ loading, nowPlaying }) => (
   <Container>
-    {loading ? (
-      <ActivityIndicator color={theme.green} size={"large"} />
+    {!loading ? (
+      <ActivityIndicator color={theme.green2} size={"large"} />
     ) : (
-      <Header>
+      <>
         <Swiper controlsEnabled={false} loop timeout={3}>
           {nowPlaying?.map((movie) => (
-            <Section key={movie.id}>
-              <Text>{movie.original_title}</Text>
-            </Section>
+            <Slide
+              key={movie.id}
+              id={movie.id}
+              title={movie.original_title}
+              backgroundImage={movie.backdrop_path}
+              vote={movie.vote_average}
+              overview={movie.overview}
+            />
           ))}
         </Swiper>
-      </Header>
+      </>
     )}
   </Container>
 );
