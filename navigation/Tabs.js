@@ -38,17 +38,17 @@ export default () => {
       }}
     >
       <Tabs.Screen
-        name="TV"
-        component={Tv}
-        options={{
-          tabBarIcon: ({ focused }) => bottomTabIcon(focused, "tv"),
-        }}
-      />
-      <Tabs.Screen
         name="Movies"
         component={Movies}
         options={{
           tabBarIcon: ({ focused }) => bottomTabIcon(focused, "film"),
+        }}
+      />
+      <Tabs.Screen
+        name="TV"
+        component={Tv}
+        options={{
+          tabBarIcon: ({ focused }) => bottomTabIcon(focused, "tv"),
         }}
       />
       <Tabs.Screen
