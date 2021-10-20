@@ -34,7 +34,7 @@ export default () => {
           borderBottomColor: theme.black,
           shadowColor: theme.black,
         },
-        headerTintColor: theme.white,
+        headerTintColor: theme.base,
       }}
     >
       <Tabs.Screen

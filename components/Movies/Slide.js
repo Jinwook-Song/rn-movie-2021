@@ -1,26 +1,89 @@
 import React from "react";
-import { Image, Dimensions } from "react-native";
 import styled from "styled-components/native";
 import Proptypes from "prop-types";
 import { apiImage } from "../../api";
 import { theme } from "../../colors";
-
-const { width: WIDTH, height: HEIGHT } = Dimensions.get("screen");
+import Poseter from "../Poster";
+import { TouchableOpacity } from "react-native";
 
 const Container = styled.View`
-  width: ${WIDTH}px;
-  height: ${HEIGHT / 4}px;
-  background-color: ${theme.green2};
+  width: 100%;
+  height: 100%;
 `;
 
 const BG = styled.Image`
   width: 100%;
   height: 100%;
+  opacity: 0.4;
+  position: absolute;
 `;
 
-const Slide = ({ id, title, backgroundImage, votes, overview }) => (
+const Content = styled.View`
+  height: 100%;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+`;
+
+const Data = styled.View`
+  width: 50%;
+  align-items: flex-start;
+`;
+
+const Title = styled.Text`
+  color: ${theme.green2};
+  font-weight: 800;
+  font-size: 18px;
+  margin-bottom: 10px;
+`;
+
+const Votes = styled.Text`
+  color: ${theme.white};
+  opacity: 0.8;
+  margin-bottom: 5px;
+  font-weight: 600;
+  font-size: 12px;
+`;
+
+const Overview = styled.Text`
+  color: ${theme.white};
+  opacity: 0.6;
+  font-size: 12px;
+  margin-bottom: 5px;
+`;
+
+const Button = styled.View`
+  background-color: ${theme.base};
+  opacity: 0.9;
+  padding: 3px 10px;
+  border-radius: 3px;
+`;
+const ButtonText = styled.Text`
+  color: ${theme.white};
+`;
+
+const Slide = ({ id, title, backgroundImage, votes, overview, poster }) => (
   <Container>
     <BG source={{ uri: apiImage(backgroundImage) }} />
+    <Content>
+      <Poseter url={apiImage(poster)} />
+      <Data>
+        <Title>
+          {title.length > 40 ? title.slice(0, 40).concat("...") : title}
+        </Title>
+        <Votes>⭐ {votes} / 10</Votes>
+        <Overview>
+          {overview.length > 120
+            ? overview.slice(0, 120).concat("...")
+            : overview}
+        </Overview>
+        <TouchableOpacity>
+          <Button>
+            <ButtonText>see more</ButtonText>
+          </Button>
+        </TouchableOpacity>
+      </Data>
+    </Content>
   </Container>
 );
 
