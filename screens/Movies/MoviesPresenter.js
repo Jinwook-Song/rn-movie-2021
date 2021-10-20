@@ -6,24 +6,26 @@ import { ActivityIndicator, Dimensions, ScrollView } from "react-native";
 import Slide from "../../components/Movies/Slide";
 import Title from "../../components/Title";
 import Vertical from "../../components/Vertical";
+import Horizontal from "../../components/Horizontal";
 
 const { width: WIDTH, height: HEIGHT } = Dimensions.get("window");
 
 const SliderContainer = styled.View`
-  width: ${WIDTH}px;
+  width: 100%;
   height: ${HEIGHT / 4}px;
   margin-bottom: 50px;
 `;
 
-const MainContainer = styled.View``;
+const PopularContainer = styled.View``;
 
-export default ({ loading, nowPlaying, popular }) => (
+const UpcommingContainer = styled.View`
+  margin-top: 20px;
+`;
+
+export default ({ loading, nowPlaying, popular, upcoming }) => (
   <ScrollView
-    style={{
-      backgroundColor: "black",
-    }}
+    style={{ backgroundColor: "black" }}
     contentContainerStyle={{
-      flex: 1,
       justifyContent: loading ? "center" : "flex-start",
     }}
   >
@@ -46,9 +48,10 @@ export default ({ loading, nowPlaying, popular }) => (
             ))}
           </Swiper>
         </SliderContainer>
-        <MainContainer>
+        <PopularContainer>
           <Title title={"Popular Movies"} />
           <ScrollView
+            style={{ marginVertical: 20, marginBottom: 40 }}
             horizontal
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={{ paddingHorizontal: 10 }}
@@ -56,13 +59,28 @@ export default ({ loading, nowPlaying, popular }) => (
             {popular.map((movie) => (
               <Vertical
                 key={movie.id}
+                id={movie.id}
                 poster={movie.poster_path}
                 title={movie.title}
                 votes={movie.vote_average}
               />
             ))}
           </ScrollView>
-        </MainContainer>
+          <Title title={"Comming Soon"} />
+          <UpcommingContainer>
+            {upcoming.map((movie) => (
+              <Horizontal
+                key={movie.id}
+                id={movie.id}
+                poster={movie.poster_path}
+                title={movie.title}
+                votes={movie.vote_average}
+                overview={movie.overview}
+                releaseDate={movie.release_date}
+              />
+            ))}
+          </UpcommingContainer>
+        </PopularContainer>
       </>
     )}
   </ScrollView>

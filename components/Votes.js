@@ -4,7 +4,7 @@ import styled from "styled-components/native";
 import { theme } from "../colors";
 
 const Container = styled.Text`
-  color: ${theme.white};
+  color: ${theme.yellow};
   opacity: 0.8;
   font-weight: 600;
   font-size: 12px;

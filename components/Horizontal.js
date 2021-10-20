@@ -1,0 +1,73 @@
+import React from "react";
+import Proptypes from "prop-types";
+import styled from "styled-components/native";
+import { theme } from "../colors";
+import Poster from "./Poster";
+import Votes from "./Votes";
+import { apiImage } from "../api";
+import { trimText } from "../utils";
+import { TouchableOpacity } from "react-native";
+
+const Container = styled.View`
+  padding-left: 10px;
+  margin-bottom: 10px;
+  flex-direction: row;
+  align-items: flex-start;
+`;
+const Data = styled.View`
+  align-items: flex-start;
+  width: 60%;
+  margin-left: 10px;
+`;
+
+const Title = styled.Text`
+  color: ${theme.green};
+  font-weight: 600;
+  margin-bottom: 5px;
+`;
+
+const ReleaseContainer = styled.View`
+  flex-direction: row;
+`;
+
+const ReleaseDate = styled.Text`
+  color: ${theme.yellow};
+  font-size: 12px;
+  opacity: 0.8;
+  margin-left: 10px;
+  font-weight: 600;
+`;
+
+const Overview = styled.Text`
+  color: ${theme.white};
+  opacity: 0.8;
+  font-size: 12px;
+  margin-top: 5px;
+`;
+
+const Horizontal = ({ id, poster, title, votes, overview, releaseDate }) => (
+  <TouchableOpacity>
+    <Container>
+      <Poster url={poster} />
+      <Data>
+        <Title>{trimText(title, 30)}</Title>
+        <ReleaseContainer>
+          <Votes votes={votes} />
+          {releaseDate ? <ReleaseDate>{releaseDate}</ReleaseDate> : null}
+        </ReleaseContainer>
+        <Overview>{trimText(overview, 140)}</Overview>
+      </Data>
+    </Container>
+  </TouchableOpacity>
+);
+
+Horizontal.prototype = {
+  id: Proptypes.number.isRequired,
+  title: Proptypes.string.isRequired,
+  vote: Proptypes.number.isRequired,
+  overview: Proptypes.string.isRequired,
+  poster: Proptypes.string.isRequired,
+  releaseDate: Proptypes.string,
+};
+
+export default Horizontal;
