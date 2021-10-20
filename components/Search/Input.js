@@ -4,7 +4,12 @@ import Proptypes from "prop-types";
 import { theme } from "../../colors";
 
 const TextInput = styled.TextInput`
-  background-color: ${theme.white};
+  background-color: ${theme.green};
+  color: ${theme.white};
+  margin: 20px;
+  padding: 15px 10px;
+  border-radius: 15px;
+  font-weight: 400;
 `;
 
 const Input = ({ placeholder, value, onChange, onSubmit }) => (
@@ -13,6 +18,7 @@ const Input = ({ placeholder, value, onChange, onSubmit }) => (
     onChangeText={onChange}
     onSubmitEditing={onSubmit}
     returnKeyType={"search"}
+    placeholderTextColor={theme.white}
   />
 );
 

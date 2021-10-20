@@ -13,7 +13,7 @@ const Container = styled.ScrollView`
 export default ({ movies, shows, onChange, onSubmit, keyword }) => (
   <Container>
     <Input
-      placeholder={"Write a keyword"}
+      placeholder={"Write a keyword..."}
       value={keyword}
       onChange={onChange}
       onSubmit={onSubmit}

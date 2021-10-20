@@ -38,13 +38,6 @@ export default () => {
       }}
     >
       <Tabs.Screen
-        name="Search"
-        component={Search}
-        options={{
-          tabBarIcon: ({ focused }) => bottomTabIcon(focused, "search"),
-        }}
-      />
-      <Tabs.Screen
         name="Movies"
         component={Movies}
         options={{
@@ -56,6 +49,13 @@ export default () => {
         component={Tv}
         options={{
           tabBarIcon: ({ focused }) => bottomTabIcon(focused, "tv"),
+        }}
+      />
+      <Tabs.Screen
+        name="Search"
+        component={Search}
+        options={{
+          tabBarIcon: ({ focused }) => bottomTabIcon(focused, "search"),
         }}
       />
       <Tabs.Screen
