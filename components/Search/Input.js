@@ -8,7 +8,12 @@ const TextInput = styled.TextInput`
 `;
 
 const Input = ({ placeholder, value, onChange, onSubmit }) => (
-  <TextInput placeholder={placeholder} />
+  <TextInput
+    placeholder={placeholder}
+    onChangeText={onChange}
+    onSubmitEditing={onSubmit}
+    returnKeyType={"search"}
+  />
 );
 
 Input.propTypes = {
