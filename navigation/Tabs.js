@@ -11,7 +11,7 @@ function bottomTabIcon(focused, tabName) {
   return (
     <Fontisto
       name={tabName}
-      size={25}
+      size={parseInt(`${focused ? 25 : 23}`)}
       color={`${focused ? theme.base : theme.gray}`}
     />
   );

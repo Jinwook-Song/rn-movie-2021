@@ -3,15 +3,12 @@ import styled from "styled-components/native";
 import { theme } from "../../colors";
 import Horizontal from "../../components/Horizontal";
 import HorizontalSlider from "../../components/HorizontalSlider";
+import ScrollContainer from "../../components/ScrollContainer";
 import Input from "../../components/Search/Input";
 import Vertical from "../../components/Vertical";
 
-const Container = styled.ScrollView`
-  background-color: ${theme.black};
-`;
-
 export default ({ movies, shows, onChange, onSubmit, keyword }) => (
-  <Container>
+  <ScrollContainer loading={false} refreshFn={onSubmit}>
     <Input
       placeholder={"Write a keyword..."}
       value={keyword}
@@ -44,5 +41,5 @@ export default ({ movies, shows, onChange, onSubmit, keyword }) => (
         ))}
       </HorizontalSlider>
     )}
-  </Container>
+  </ScrollContainer>
 );

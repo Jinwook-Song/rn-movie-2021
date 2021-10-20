@@ -85,7 +85,7 @@ Slide.propTypes = {
   id: Proptypes.number.isRequired,
   title: Proptypes.string.isRequired,
   backgroundImage: Proptypes.string.isRequired,
-  vote: Proptypes.number.isRequired,
+  vote: Proptypes.number,
   overview: Proptypes.string.isRequired,
   poster: Proptypes.string.isRequired,
 };
