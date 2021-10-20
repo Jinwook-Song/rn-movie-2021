@@ -60,7 +60,7 @@ const Horizontal = ({ id, poster, title, votes, overview, releaseDate }) => (
   </TouchableOpacity>
 );
 
-Horizontal.prototype = {
+Horizontal.propTypes = {
   id: Proptypes.number.isRequired,
   title: Proptypes.string.isRequired,
   vote: Proptypes.number.isRequired,

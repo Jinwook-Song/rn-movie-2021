@@ -28,7 +28,7 @@ const Vertical = ({ id, poster, title, votes }) => (
   </TouchableOpacity>
 );
 
-Vertical.prototype = {
+Vertical.propTypes = {
   id: Proptypes.number.isRequired,
   poster: Proptypes.string.isRequired,
   title: Proptypes.string.isRequired,

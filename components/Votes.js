@@ -12,7 +12,7 @@ const Container = styled.Text`
 
 const Votes = ({ votes }) => <Container>⭐ {votes} / 10</Container>;
 
-Votes.prototype = {
+Votes.propTypes = {
   votes: Proptypes.number.isRequired,
 };
 

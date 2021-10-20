@@ -12,7 +12,7 @@ const Text = styled.Text`
 
 const Title = ({ title }) => <Text>{title}</Text>;
 
-Title.prototype = {
+Title.propTypes = {
   title: Proptypes.string.isRequired,
 };
 

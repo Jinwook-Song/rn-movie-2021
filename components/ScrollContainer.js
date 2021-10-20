@@ -19,7 +19,7 @@ const ScrollContainer = ({ loading, children }) => (
   </ScrollView>
 );
 
-ScrollContainer.prototype = {
+ScrollContainer.propTypes = {
   loading: Proptypes.bool.isRequired,
   children: Proptypes.node.isRequired,
 };

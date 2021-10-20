@@ -81,7 +81,7 @@ const Slide = ({ id, title, backgroundImage, votes, overview, poster }) => (
   </Container>
 );
 
-Slide.prototype = {
+Slide.propTypes = {
   id: Proptypes.number.isRequired,
   title: Proptypes.string.isRequired,
   backgroundImage: Proptypes.string.isRequired,

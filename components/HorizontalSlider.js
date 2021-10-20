@@ -17,7 +17,7 @@ const HorizontalSlider = ({ title, children }) => (
   </>
 );
 
-HorizontalSlider.prototype = {
+HorizontalSlider.propTypes = {
   title: Proptypes.string.isRequired,
   children: Proptypes.node.isRequired,
 };
