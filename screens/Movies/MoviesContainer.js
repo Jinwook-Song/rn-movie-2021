@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Text, View } from "react-native";
-import { theme } from "../../colors";
 import { movieApi } from "../../api";
 import MoviesPresenter from "./MoviesPresenter";
 

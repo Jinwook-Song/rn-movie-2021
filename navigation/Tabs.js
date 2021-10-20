@@ -1,7 +1,7 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Movies from "../screens/Movies";
-import Tv from "../screens/Tv";
+import Tv from "../screens/TV";
 import Search from "../screens/Search";
 import Favs from "../screens/Favs";
 import Fontisto from "react-native-vector-icons/Fontisto";
@@ -38,17 +38,17 @@ export default () => {
       }}
     >
       <Tabs.Screen
-        name="Movies"
-        component={Movies}
-        options={{
-          tabBarIcon: ({ focused }) => bottomTabIcon(focused, "film"),
-        }}
-      />
-      <Tabs.Screen
         name="TV"
         component={Tv}
         options={{
           tabBarIcon: ({ focused }) => bottomTabIcon(focused, "tv"),
+        }}
+      />
+      <Tabs.Screen
+        name="Movies"
+        component={Movies}
+        options={{
+          tabBarIcon: ({ focused }) => bottomTabIcon(focused, "film"),
         }}
       />
       <Tabs.Screen

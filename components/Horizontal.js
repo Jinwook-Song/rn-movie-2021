@@ -4,8 +4,7 @@ import styled from "styled-components/native";
 import { theme } from "../colors";
 import Poster from "./Poster";
 import Votes from "./Votes";
-import { apiImage } from "../api";
-import { trimText } from "../utils";
+import { trimText, formatDate } from "../utils";
 import { TouchableOpacity } from "react-native";
 
 const Container = styled.View`
