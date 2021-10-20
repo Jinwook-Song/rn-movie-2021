@@ -59,10 +59,10 @@ export default () => {
         }}
       />
       <Tabs.Screen
-        name="Favs"
+        name="Discovery"
         component={Favs}
         options={{
-          tabBarIcon: ({ focused }) => bottomTabIcon(focused, "favorite"),
+          tabBarIcon: ({ focused }) => bottomTabIcon(focused, "star"),
         }}
       />
     </Tabs.Navigator>
