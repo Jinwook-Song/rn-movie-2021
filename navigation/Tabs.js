@@ -24,6 +24,7 @@ export default () => {
     <Tabs.Navigator
       screenOptions={{
         tabBarActiveTintColor: theme.base,
+        tabBarInactiveTintColor: theme.gray,
         tabBarStyle: {
           backgroundColor: theme.black,
           borderTopColor: theme.black,
