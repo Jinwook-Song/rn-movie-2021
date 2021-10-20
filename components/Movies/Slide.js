@@ -5,6 +5,7 @@ import { apiImage } from "../../api";
 import { theme } from "../../colors";
 import Poseter from "../Poster";
 import { TouchableOpacity } from "react-native";
+import Votes from "../Votes";
 
 const Container = styled.View`
   width: 100%;
@@ -31,18 +32,14 @@ const Data = styled.View`
 `;
 
 const Title = styled.Text`
-  color: ${theme.green2};
+  color: ${theme.green};
   font-weight: 800;
   font-size: 18px;
   margin-bottom: 10px;
 `;
 
-const Votes = styled.Text`
-  color: ${theme.white};
-  opacity: 0.8;
+const VotesContainer = styled.View`
   margin-bottom: 5px;
-  font-weight: 600;
-  font-size: 12px;
 `;
 
 const Overview = styled.Text`
@@ -71,7 +68,9 @@ const Slide = ({ id, title, backgroundImage, votes, overview, poster }) => (
         <Title>
           {title.length > 40 ? title.slice(0, 40).concat("...") : title}
         </Title>
-        <Votes>⭐ {votes} / 10</Votes>
+        <VotesContainer>
+          <Votes votes={votes} />
+        </VotesContainer>
         <Overview>
           {overview.length > 120
             ? overview.slice(0, 120).concat("...")
