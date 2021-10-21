@@ -45,10 +45,19 @@ const Overview = styled.Text`
   margin-top: 5px;
 `;
 
-const Horizontal = ({ id, poster, title, votes, overview, releaseDate }) => {
+const Horizontal = ({
+  isTv = false,
+  id,
+  poster,
+  title,
+  votes,
+  overview,
+  releaseDate,
+}) => {
   const navigation = useNavigation();
   const goToDetail = () => {
     navigation.navigate("Detail", {
+      isTv,
       id,
       poster,
       title,

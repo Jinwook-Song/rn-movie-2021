@@ -27,6 +27,7 @@ export default ({ refreshFn, loading, popular, topRated, today, thisWeek }) => (
           {popular?.map((show) => (
             <Slide
               key={show.id}
+              isTv={true}
               id={show.id}
               title={show.name}
               backgroundImage={show.backdrop_path}
@@ -42,6 +43,7 @@ export default ({ refreshFn, loading, popular, topRated, today, thisWeek }) => (
           {today.map((show) => (
             <Vertical
               key={show.id}
+              isTv={true}
               id={show.id}
               poster={show.poster_path}
               title={show.name}
@@ -53,6 +55,7 @@ export default ({ refreshFn, loading, popular, topRated, today, thisWeek }) => (
           {thisWeek.map((show) => (
             <Vertical
               key={show.id}
+              isTv={true}
               id={show.id}
               poster={show.poster_path}
               title={show.name}
@@ -64,6 +67,7 @@ export default ({ refreshFn, loading, popular, topRated, today, thisWeek }) => (
           {topRated.map((show) => (
             <Horizontal
               key={show.id}
+              isTv={true}
               id={show.id}
               poster={show.poster_path}
               title={show.name}

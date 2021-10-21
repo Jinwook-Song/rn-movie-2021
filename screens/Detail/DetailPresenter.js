@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Dimensions } from "react-native";
+import { ActivityIndicator, Dimensions } from "react-native";
 import styled from "styled-components/native";
 import { apiImage } from "../../api";
 import { theme } from "../../colors";
@@ -57,24 +57,31 @@ const DataValue = styled.Text`
   font-weight: 500;
 `;
 
-export default ({backgroundImage,title, poster, votes, overview }) => (
+export default ({ results, loading }) => (
   <ScrollContainer loading={false} refreshFn={() => {}}>
     <HeaderContainer>
-      <BG source={{ uri: apiImage(backgroundImage) }} />
+      <BG source={{ uri: apiImage(results.backgroundImage) }} />
       <Container>
-        <Poster url={poster} />
+        <Poster url={results.poster} />
         <Info>
-          <Title>{title}</Title>
-          <Votes votes={votes} />
+          <Title>{results.title}</Title>
+          <Votes votes={results.votes} />
         </Info>
       </Container>
     </HeaderContainer>
     <DataContainer>
-      {overview && (
+      {results.overview && (
         <>
           <DataName>Overview</DataName>
-          <DataValue>{overview}</DataValue>
+          <DataValue>{results.overview}</DataValue>
         </>
+      )}
+      {loading && (
+        <ActivityIndicator
+          style={{ marginTop: 30 }}
+          color={theme.green}
+          size={"large"}
+        />
       )}
     </DataContainer>
   </ScrollContainer>
