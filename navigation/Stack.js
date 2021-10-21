@@ -14,7 +14,7 @@ export default () => (
         border: theme.black,
         shadowColor: theme.black,
       },
-      headerTintColor: theme.white,
+      headerTintColor: theme.base,
       headerBackTitleVisible: false,
     }}
   >
