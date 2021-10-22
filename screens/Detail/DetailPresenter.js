@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
-import { ActivityIndicator, Dimensions } from "react-native";
+import { ActivityIndicator, Dimensions, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { apiImage } from "../../api";
 import { theme } from "../../colors";
 import Poster from "../../components/Poster";
 import ScrollContainer from "../../components/ScrollContainer";
 import Votes from "../../components/Votes";
+import Link from "../../components/Detail/Link";
 
 const HeaderContainer = styled.View`
   height: ${Dimensions.get("window").height / 3}px;
@@ -59,7 +60,7 @@ const DataValue = styled.Text`
   font-weight: 500;
 `;
 
-export default ({ results, loading }) => (
+export default ({ openBrowser, results, loading }) => (
   <ScrollContainer loading={false} refreshFn={() => {}}>
     <HeaderContainer>
       <BG source={{ uri: apiImage(results.backgroundImage) }} />
@@ -117,6 +118,12 @@ export default ({ results, loading }) => (
           <DataValue>{results.first_air_date}</DataValue>
         </>
       )}
+      {results.first_air_date?.length !== 0 && (
+        <>
+          <DataName>First Air Date</DataName>
+          <DataValue>{results.first_air_date}</DataValue>
+        </>
+      )}
       {results.genres && (
         <>
           <DataName style={{ color: theme.base }}>Genres</DataName>
@@ -125,6 +132,33 @@ export default ({ results, loading }) => (
               index + 1 === results.genres.length ? g.name : `${g.name}, `
             )}
           </DataValue>
+        </>
+      )}
+      {results.imdb_id?.length !== 0 && (
+        <>
+          <DataName>Links</DataName>
+          <Link
+            text={"IMDB Page"}
+            icon={"imdb"}
+            onPress={() =>
+              openBrowser(`https://www.imdb.com/title/${results.imdb_id}`)
+            }
+          />
+        </>
+      )}
+      {results.videos?.results?.length > 0 && (
+        <>
+          <DataName>Videos</DataName>
+          {results.videos.results.map((video) => (
+            <Link
+              text={video.name}
+              key={video.id}
+              icon={"youtube-play"}
+              onPress={() =>
+                openBrowser(`https://www.youtube.com/watch?v=${video.key}`)
+              }
+            />
+          ))}
         </>
       )}
     </DataContainer>
