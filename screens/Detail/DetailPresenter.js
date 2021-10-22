@@ -68,17 +68,17 @@ export default ({ openBrowser, results, loading }) => (
         <Poster url={results.poster} />
         <Info>
           <Title>{results.title}</Title>
-          <Votes votes={results.votes} />
+          {results.votes ? <Votes votes={results.votes} /> : null}
         </Info>
       </Container>
     </HeaderContainer>
     <DataContainer>
-      {results.overview?.length !== 0 && (
+      {results.overview ? (
         <>
           <DataName style={{ color: theme.base }}>Overview</DataName>
           <DataValue>{results.overview}</DataValue>
         </>
-      )}
+      ) : null}
       {loading && (
         <ActivityIndicator
           style={{ marginTop: 30 }}
@@ -86,45 +86,40 @@ export default ({ openBrowser, results, loading }) => (
           size={"large"}
         />
       )}
-      {results.spoken_languages && results.spoken_languages.length !== 0 && (
+      {results.spoken_languages && results.spoken_languages.length !== 0 ? (
         <>
           <DataName>Languages</DataName>
           <DataValue>
             {results.spoken_languages.map((lang) => `${lang.name} `)}
           </DataValue>
         </>
-      )}
-      {results.release_date?.length !== 0 && (
+      ) : null}
+      {results.release_date ? (
         <>
           <DataName style={{ color: theme.base }}>Realease Date</DataName>
           <DataValue>{results.release_date}</DataValue>
         </>
-      )}
-      {results.status?.length !== 0 && (
+      ) : null}
+      {results.status ? (
         <>
           <DataName>Status</DataName>
           <DataValue>{results.status}</DataValue>
         </>
-      )}
-      {results.runtime?.length !== 0 && (
+      ) : null}
+      {results.runtime ? (
         <>
           <DataName style={{ color: theme.base }}>Runtime</DataName>
           <DataValue>{results.runtime} min</DataValue>
         </>
-      )}
-      {results.first_air_date?.length !== 0 && (
+      ) : null}
+
+      {results.first_air_date ? (
         <>
           <DataName>First Air Date</DataName>
           <DataValue>{results.first_air_date}</DataValue>
         </>
-      )}
-      {results.first_air_date?.length !== 0 && (
-        <>
-          <DataName>First Air Date</DataName>
-          <DataValue>{results.first_air_date}</DataValue>
-        </>
-      )}
-      {results.genres && (
+      ) : null}
+      {results.genres && results.genres.length !== 0 ? (
         <>
           <DataName style={{ color: theme.base }}>Genres</DataName>
           <DataValue>
@@ -133,8 +128,8 @@ export default ({ openBrowser, results, loading }) => (
             )}
           </DataValue>
         </>
-      )}
-      {results.imdb_id?.length !== 0 && (
+      ) : null}
+      {results.imdb_id ? (
         <>
           <DataName>Links</DataName>
           <Link
@@ -145,8 +140,8 @@ export default ({ openBrowser, results, loading }) => (
             }
           />
         </>
-      )}
-      {results.videos?.results?.length > 0 && (
+      ) : null}
+      {results.videos.results && results.videos.results.length !== 0 ? (
         <>
           <DataName>Videos</DataName>
           {results.videos.results.map((video) => (
@@ -160,7 +155,7 @@ export default ({ openBrowser, results, loading }) => (
             />
           ))}
         </>
-      )}
+      ) : null}
     </DataContainer>
   </ScrollContainer>
 );
