@@ -33,6 +33,7 @@ export default ({ movies, shows, onChange, onSubmit, keyword }) => (
         {shows.map((show) => (
           <Vertical
             key={show.id}
+            isTv={true}
             id={show.id}
             title={show.name}
             poster={show.poster_path}

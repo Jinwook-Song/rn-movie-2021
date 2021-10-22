@@ -39,12 +39,14 @@ const Title = styled.Text`
 `;
 
 const DataContainer = styled.View`
-  margin-top: 50px;
+  margin-top: 30px;
   padding: 0px 30px;
+  padding-bottom: 50px;
 `;
 
 const DataName = styled.Text`
-  color: ${theme.white};
+  margin-top: 30px;
+  color: ${theme.green};
   opacity: 0.8;
   font-weight: 800;
   margin-bottom: 5px;
@@ -70,9 +72,9 @@ export default ({ results, loading }) => (
       </Container>
     </HeaderContainer>
     <DataContainer>
-      {results.overview && (
+      {results.overview?.length !== 0 && (
         <>
-          <DataName>Overview</DataName>
+          <DataName style={{ color: theme.base }}>Overview</DataName>
           <DataValue>{results.overview}</DataValue>
         </>
       )}
@@ -82,6 +84,48 @@ export default ({ results, loading }) => (
           color={theme.green}
           size={"large"}
         />
+      )}
+      {results.spoken_languages && results.spoken_languages.length !== 0 && (
+        <>
+          <DataName>Languages</DataName>
+          <DataValue>
+            {results.spoken_languages.map((lang) => `${lang.name} `)}
+          </DataValue>
+        </>
+      )}
+      {results.release_date?.length !== 0 && (
+        <>
+          <DataName style={{ color: theme.base }}>Realease Date</DataName>
+          <DataValue>{results.release_date}</DataValue>
+        </>
+      )}
+      {results.status?.length !== 0 && (
+        <>
+          <DataName>Status</DataName>
+          <DataValue>{results.status}</DataValue>
+        </>
+      )}
+      {results.runtime?.length !== 0 && (
+        <>
+          <DataName style={{ color: theme.base }}>Runtime</DataName>
+          <DataValue>{results.runtime} min</DataValue>
+        </>
+      )}
+      {results.first_air_date?.length !== 0 && (
+        <>
+          <DataName>First Air Date</DataName>
+          <DataValue>{results.first_air_date}</DataValue>
+        </>
+      )}
+      {results.genres && (
+        <>
+          <DataName style={{ color: theme.base }}>Genres</DataName>
+          <DataValue>
+            {results.genres.map((g, index) =>
+              index + 1 === results.genres.length ? g.name : `${g.name}, `
+            )}
+          </DataValue>
+        </>
       )}
     </DataContainer>
   </ScrollContainer>
