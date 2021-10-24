@@ -27,21 +27,40 @@ const styles = {
 
 export default ({ results }) => {
   const [topCover, setTopConver] = useState(0);
+  const nextCover = () => setTopConver((currentCover) => currentCover + 1);
   const position = new Animated.ValueXY();
   const panResponder = PanResponder.create({
     onStartShouldSetPanResponder: () => true,
     onPanResponderMove: (event, { dx, dy }) => {
       position.setValue({ x: dx, y: dy });
     },
-    onPanResponderRelease: () => {
-      Animated.spring(position, {
-        toValue: {
-          x: 0,
-          y: 0,
-        },
-        useNativeDriver: true,
-        bounciness: 20,
-      }).start();
+    onPanResponderRelease: (event, { dx, dy }) => {
+      if (dx >= 250) {
+        Animated.spring(position, {
+          toValue: {
+            x: WIDTH + 100,
+            y: dy,
+          },
+          useNativeDriver: true,
+        }).start(nextCover);
+      } else if (dx <= -250) {
+        Animated.spring(position, {
+          toValue: {
+            x: -(WIDTH + 100),
+            y: dy,
+          },
+          useNativeDriver: true,
+        }).start(nextCover);
+      } else {
+        Animated.spring(position, {
+          toValue: {
+            x: 0,
+            y: 0,
+          },
+          useNativeDriver: true,
+          bounciness: 20,
+        }).start();
+      }
     },
   });
   const rotationValues = position.x.interpolate({
@@ -62,7 +81,9 @@ export default ({ results }) => {
   return (
     <Container>
       {results?.map((result, index) => {
-        if (index === topCover) {
+        if (index < topCover) {
+          return null;
+        } else if (index === topCover) {
           return (
             <Animated.View
               style={{
