@@ -44,6 +44,11 @@ export default ({ results }) => {
       }).start();
     },
   });
+  const rotationValues = position.x.interpolate({
+    inputRange: [-200, 0, 200],
+    outputRange: ["-10deg", "0deg", "10deg"],
+    extrapolate: "clamp",
+  });
   return (
     <Container>
       {results?.map((result, index) => {
@@ -53,7 +58,10 @@ export default ({ results }) => {
               style={{
                 ...styles,
                 zIndex: 1,
-                transform: [...position.getTranslateTransform()],
+                transform: [
+                  { rotate: rotationValues },
+                  ...position.getTranslateTransform(),
+                ],
               }}
               key={result.id}
               {...panResponder.panHandlers}
@@ -62,10 +70,12 @@ export default ({ results }) => {
             </Animated.View>
           );
         }
+
         return (
           <Animated.View
             style={{
               ...styles,
+              zIndex: -index,
             }}
             key={result.id}
             {...panResponder.panHandlers}
