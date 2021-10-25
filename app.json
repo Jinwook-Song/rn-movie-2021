@@ -4,11 +4,12 @@
     "slug": "rn-movie-2021",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/circle-scatter-haikei.png",
+    "primaryColor": "#009A7B",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/squid-splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000000"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -21,12 +22,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "foregroundImage": "./assets/circle-scatter-haikei.png",
+        "backgroundColor": "#009A7B"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/circle-scatter-haikei.png"
     },
     "description": "",
     "githubUrl": "https://github.com/jinwook-song"
